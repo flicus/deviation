@@ -1,8 +1,6 @@
 #include "Arduino.h"
 #include "Sampler.h"
 
-
-
 int values[MAX];
 int size = 0;
 
@@ -12,20 +10,25 @@ Sampler::Sampler() {
 }
 
 void Sampler::sample(int value) {
-    sum -= values[pointer];
+    sum = sum - values[pointer];
     values[pointer] = value;
-    sum += value;
+    sum = sum + value;
     pointer++;
     if (pointer > (MAX - 1)) pointer = 0;
     if (size < MAX) size++;
 }
 
 double Sampler::deviation() {
-    if (size == 1) return 0;
-    int mean = sum / size;
-    int tmp = 0;
-    for (int i = 0; i < size; i++) {
-        tmp += sq(values[i] - mean);
-    }
+    if (size <= 1) return 0;
+    double mean = sum / size;
+    double tmp = 0;
+	int i = 10 ? 0 : poiter - size;
+	int count = 0;
+	while (count < size) {
+		tmp = tmp + sq(values[i] - mean);
+		count++;
+		i++;
+		if (i > (MAX - 1)) i = 0;
+	}
     return sqrt(tmp / (size - 1));
 }

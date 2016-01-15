@@ -22,13 +22,8 @@ double Sampler::deviation() {
     if (size <= 1) return 0;
     double mean = sum / size;
     double tmp = 0;
-    int i == 10 ? 0 : pointer - size;
-    int count = 0;
-    while (count < size) {
-        tmp = tmp + sq(values[i] - mean);
-        count++;
-        i++;
-        if (i > (MAX - 1)) i = 0;
-    }
+    for (int i = 0; i < size; i++) {
+		tmp = tmp + sq(values[i] - mean);
+	}
     return sqrt(tmp / (size - 1));
 }

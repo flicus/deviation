@@ -23,7 +23,7 @@ double Sampler::deviation() {
     double mean = sum / size;
     double tmp = 0;
     for (int i = 0; i < size; i++) {
-		tmp = tmp + sq(values[i] - mean);
-	}
+        tmp = tmp + sq(values[i] - mean);
+    }
     return sqrt(tmp / (size - 1));
 }
